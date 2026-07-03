@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primera Comunión y Confirmación</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== VARIABLES Y BASE ===== */
+        :root {
+            --gold-dark: #b08d57;
+            --gold-light: #d6b25e;
+            --bg-color: #fcfaf5;
+            --text-dark: #4a4238;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* ===== EFECTO LLUVIA DE BRILLOS (PARTÍCULAS) ===== */
+        #particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2; 
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(135deg, #ffffff, #ffd700, #b08d57);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: rainFall linear infinite;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+        }
+
+        @keyframes rainFall {
+            0% {
+                transform: translateY(-50px) translateX(0) scale(0.6);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) translateX(40px) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* ===== PORTADA (HERO) ===== */
+        .hero {
+            height: 100vh;
+            background: url('img/portada.jpg') center/cover no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.1); 
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3; 
+            color: white;
+            padding: 45px 35px;
+            max-width: 750px;
+            width: 85%;
+            background: rgba(0, 0, 0, 0.4); 
+            border: 1px solid rgba(255, 215, 0, 0.3); 
+            border-radius: 16px;
+            backdrop-filter: blur(8px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .hero-content .dove {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        .hero-content h1 {
+            font-size: 1.6rem;
+            letter-spacing: 4px;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        .hero-content h1 span {
+            display: block;
+            font-size: 3.4rem;
+            color: #ffd700; 
+            font-weight: 700; 
+            margin: 12px 0 25px 0;
+            text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.9);
+        }
+
+        .festejados-nombres h2 {
+            font-size: 1.6rem;
+            font-weight: 700; 
+            margin: 14px 0;
+            color: #ffffff; 
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+        }
+
+        .fecha-hero {
+            margin-top: 35px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            color: #ffd700; 
+            font-weight: 700; 
+            border-top: 2px solid #ffd700;
+            border-bottom: 2px solid #ffd700;
+            display: inline-block;
+            padding: 10px 35px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+        }
+
+        /* ===== CONTENEDOR PRINCIPAL (GRID) ===== */
+        .main-container {
+            max-width: 1300px;
+            margin: -50px auto 50px auto; 
+            padding: 0 20px;
+            position: relative;
+            z-index: 5; 
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr; 
+            gap: 25px;
+            align-items: start;
+        }
+
+        /* ===== TARJETAS (CARDS) ===== */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(176, 141, 87, 0.2);
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .card h3 {
+            color: var(--gold-dark);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .divisor {
+            width: 50px;
+            height: 1px;
+            background: var(--gold-light);
+            margin: 15px auto;
+            position: relative;
+        }
+
+        .divisor::after {
+            content: "✦";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--gold-light);
+            font-size: 0.8rem;
+            background: var(--card-bg);
+            padding: 0 5px;
+        }
+
+        /* ===== COUNTDOWN Y UBICACIÓN ===== */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .cd-box {
+            background: #fffdf9;
+            border: 1px solid rgba(176, 141, 87, 0.2);
+            padding: 15px 10px;
+            border-radius: 10px;
+            min-width: 70px;
+            box-shadow: inset 0 0 10px rgba(176, 141, 87, 0.05);
+        }
+
+        .cd-number {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--gold-dark);
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        .cd-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            color: #888;
+        }
+
+        /* ===== GALERÍA FESTEJADOS ===== */
+        .festejados-grid {
+            display: flex;
+            justify-content: space-around;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .festejado-item {
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .festejado-item img {
+            width: 100%;
+            max-width: 150px;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--gold-light);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+
+        .festejado-item h4 {
+            color: var(--text-dark);
+            font-size: 1rem;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        /* ===== UBICACIONES GRID (SIMÉTRICO) ===== */
+        .ubicaciones-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .ubicacion-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%; /* Hace que ambas cajas midan lo mismo */
+        }
+
+        .ubicacion-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px; /* Mismo borde que la foto familiar */
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); /* Misma sombra */
+        }
+
+        .ubicacion-item h4 {
+            color: var(--gold-dark);
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+        }
+
+        .ubicacion-item p {
+            margin-bottom: 20px;
+        }
+
+        .ubicacion-item .btn {
+            margin-top: auto; /* Empuja el botón siempre al fondo para que se vean parejos */
+            width: 90%;
+        }
+
+        /* ===== FOTO FAMILIAR ===== */
+        .familia-img-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-top: 15px;
+            display: block;
+        }
+
+        /* ===== BOTONES ===== */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            box-sizing: border-box;
+        }
+
+        .btn-gold {
+            background: var(--gold-dark);
+            color: white;
+        }
+
+        .btn-gold:hover {
+            background: #967545;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(176, 141, 87, 0.3);
+        }
+
+        .btn-green {
+            background: #25D366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .btn-green:hover {
+            background: #1da851;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        /* ===== QR ===== */
+        .qr-img {
+            width: 150px;
+            height: auto;
+            margin-top: 15px;
+            border-radius: 10px;
+            border: 1px solid #eee;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-family: 'Cinzel', serif;
+            color: var(--gold-dark);
+            font-size: 1.2rem;
+            background: var(--card-bg);
+            border-top: 1px solid rgba(176, 141, 87, 0.2);
+            position: relative;
+            z-index: 5;
+        }
+
+        /* ===== BOTÓN AUDIO FLOTANTE CON ANIMACIÓN DE LATIDO ===== */
+        #btn-audio {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--gold-light);
+            color: var(--gold-dark);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .pulse-anim {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(214, 178, 94, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(214, 178, 94, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(214, 178, 94, 0); }
+        }
+
+        /* ===== ANIMACIONES ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .fade-up.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .main-container {
+                grid-template-columns: 1fr; 
+                margin-top: -20px;
+            }
+            .hero-content h1 span {
+                font-size: 2.3rem;
+            }
+            .festejados-nombres h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .ubicaciones-grid {
+                grid-template-columns: 1fr; 
+            }
+            .countdown-container {
+                flex-wrap: wrap;
+            }
+            .ubicacion-item .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles"></div>
+
+    <audio id="musica-fondo" loop>
+        <source src="audio/musica.mp3" type="audio/mpeg">
+    </audio>
+    <div id="btn-audio" onclick="toggleAudio()">🎵</div>
+
+    <header class="hero">
+        <div class="hero-content fade-up">
+            <div class="dove">🕊️</div>
+            <h1>Primera<br><span>Comunión y Confirmación</span></h1>
+            
+            <div class="festejados-nombres">
+                <h2>José Salvador Hernández Osorio</h2>
+                <h2>Josué Alejandro Hernández Osorio</h2>
+                <h2>María Guadalupe Hernández Osorio</h2>
+            </div>
+
+            <div class="fecha-hero">
+                29 DE AGOSTO DE 2026
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+
+        <!-- COLUMNA IZQUIERDA -->
+        <div class="col-left">
+            <div class="card fade-up">
+                <h3>Con alegría te invitamos</h3>
+                <div class="divisor"></div>
+                <p>Nos honra compartir contigo este momento tan especial en familia.</p>
+                <div style="font-size: 2rem; color: var(--gold-light); margin-top: 10px;">✝</div>
+            </div>
+
+            <div class="card fade-up">
+                <h3>Padrinos</h3>
+                <div class="divisor"></div>
+                <p><strong>Yaneth Narváez Muñoz</strong></p>
+                <p><strong>Rodolfo Pérez Evangelista</strong></p>
+                <p><strong>Rodolfo de Jesús Pérez Narváez</strong></p>
+                <div style="font-size: 1.5rem; color: var(--gold-light); margin-top: 10px;">✝</div>
+            </div>
+        </div>
+
+        <!-- COLUMNA CENTRAL -->
+        <div class="col-center">
+            
+            <!-- CONTADOR -->
+            <div class="card fade-up">
+                <h3>Faltan</h3>
+                <div class="divisor"></div>
+                <div class="countdown-container">
+                    <div class="cd-box"><div id="days" class="cd-number">0</div><div class="cd-label">Días</div></div>
+                    <div class="cd-box"><div id="hours" class="cd-number">0</div><div class="cd-label">Horas</div></div>
+                    <div class="cd-box"><div id="minutes" class="cd-number">0</div><div class="cd-label">Min</div></div>
+                    <div class="cd-box"><div id="seconds" class="cd-number">0</div><div class="cd-label">Seg</div></div>
+                </div>
+            </div>
+
+            <!-- FOTOS INDIVIDUALES (FESTEJADOS) -->
+            <div class="card fade-up">
+                <h3>Los Festejados</h3>
+                <div class="divisor"></div>
+                <div class="festejados-grid">
+                    <div class="festejado-item">
+                        <img src="img/jose.jpg" alt="José Salvador">
+                        <h4>José</h4>
+                    </div>
+                    <div class="festejado-item">
+                        <img src="img/josue.jpg" alt="Josué Alejandro">
+                        <h4>Josué</h4>
+                    </div>
+                    <div class="festejado-item">
+                        <img src="img/guadalupe.jpg" alt="María Guadalupe">
+                        <h4>Guadalupe</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UBICACIONES -->
+            <div class="card fade-up">
+                <h3>Ubicación del Evento</h3>
+                <div class="divisor"></div>
+                
+                <div class="ubicaciones-grid">
+                    <div class="ubicacion-item">
+                        <img src="img/iglesia.jpg" alt="Iglesia">
+                        <h4>⛪ Iglesia del Ex Convento</h4>
+                        <p style="font-size: 0.85rem;">Ceremonia religiosa de Primera Comunión y Confirmación.<br><strong>Misa: 12:00 hrs</strong></p>
+                        <a class="btn btn-gold" href="https://maps.app.goo.gl/i3f9c51cC2Dgd5YP7" target="_blank">📍 CÓMO LLEGAR</a>
+                    </div>
+                    <div class="ubicacion-item">
+                        <img src="img/salon.jpg" alt="Salón de Eventos">
+                        <h4>🏛️ Salón de Eventos</h4>
+                        <p style="font-size: 0.85rem;">Celebración y convivencia familiar despues de la ceremonia.</p>
+                        <a class="btn btn-gold" href="https://maps.app.goo.gl/oMD3wgYTFi1hb2R1A" target="_blank">📍 CÓMO LLEGAR</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOTO FAMILIAR -->
+            <div class="card fade-up">
+                <h3>Nuestra Familia</h3>
+                <div class="divisor"></div>
+                <p>Gracias por acompañarnos en este día tan especial.</p>
+                <div class="familia-img-container">
+                    <img src="img/familia.jpg" alt="Foto Familiar">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- COLUMNA DERECHA -->
+        <div class="col-right">
+            <div class="card fade-up">
+                <h3>Confirmación</h3>
+                <div class="divisor"></div>
+                <p>Por favor, confirma tu asistencia para considerarte en nuestra celebración.</p>
+                <a class="btn btn-green" href="https://wa.me/5212211124005?text=Confirmo%20mi%20asistencia%20a%20la%20Primera%20Comuni%C3%B3n%20y%20Confirmaci%C3%B3n" target="_blank">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.396.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132(3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                    </svg>
+                    Confirmar Asistencia
+                </a>
+            </div>
+
+            <div class="card fade-up">
+                <h3>Escanea la Invitación</h3>
+                <div class="divisor"></div>
+                <img src="qr/ubicacion.png" alt="Código QR" class="qr-img">
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        🌿 Con cariño esperamos contar contigo 🌿
+    </footer>
+
+    <script>
+        // --- SCRIPT GENERADOR DE LLUVIA DE BRILLOS ---
+        function createGlitter() {
+            const container = document.getElementById("particles");
+            if (!container) return;
+
+            const particle = document.createElement("div");
+            particle.classList.add("particle");
+
+            const size = Math.random() * 4 + 3;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = Math.random() * 100 + "vw";
+            particle.style.animationDuration = (4 + Math.random() * 4) + "s";
+            particle.style.animationDelay = Math.random() * 2 + "s";
+
+            container.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 8000);
+        }
+        setInterval(createGlitter, 150);
+
+
+        // --- COUNTDOWN ---
+        const eventDate = new Date("August 29, 2026 12:00:00").getTime();
+
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = eventDate - now;
+
+            if (diff > 0) {
+                document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+            }
+        }, 1000);
+
+
+        // --- ANIMACIÓN AL HACER SCROLL ---
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if(e.isIntersecting){
+                    e.target.classList.add("show");
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll(".fade-up").forEach(el => {
+            observer.observe(el);
+        });
+
+
+        // --- CONTROL DE AUDIO INTELIGENTE CON ANIMACIÓN ---
+        const audio = document.getElementById("musica-fondo");
+        const btnAudio = document.getElementById("btn-audio");
+        let isPlaying = false;
+
+        btnAudio.classList.add("pulse-anim");
+
+        function intentarReproducir() {
+            if (isPlaying) return; 
+
+            audio.play().then(() => {
+                isPlaying = true;
+                btnAudio.innerText = "⏸️"; 
+                btnAudio.classList.remove("pulse-anim"); 
+                removerEscuchasInteraccion();
+            }).catch(error => {
+                console.log("El navegador requiere un clic o toque para reproducir el audio.");
+            });
+        }
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                btnAudio.innerText = "🎵"; 
+                btnAudio.classList.add("pulse-anim");
+            } else {
+                audio.play(); 
+                btnAudio.innerText = "⏸️"; 
+                btnAudio.classList.remove("pulse-anim");
+            }
+            isPlaying = !isPlaying;
+            removerEscuchasInteraccion(); 
+        }
+
+        function activarMúsicaPorInteraccion() {
+            intentarReproducir();
+        }
+
+        document.addEventListener("click", activarMúsicaPorInteraccion);
+        document.addEventListener("keydown", activarMúsicaPorInteraccion); 
+        document.addEventListener("touchstart", activarMúsicaPorInteraccion); 
+
+        function removerEscuchasInteraccion() {
+            document.removeEventListener("click", activarMúsicaPorInteraccion);
+            document.removeEventListener("keydown", activarMúsicaPorInteraccion);
+            document.removeEventListener("touchstart", activarMúsicaPorInteraccion);
+        }
+
+    </script>
+</body>
+</html>
